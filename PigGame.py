@@ -19,8 +19,10 @@ class PigGame:
 
     # Checks for if the player score is greater or equal to target score to see if they won.
     def game_win(self, player_score):
-        if player_score >= self.target_score:
+        if player_score == self.target_score:
             return 'Win'
+        if player_score >self.target_score:
+            return 'Break'
         else:
             return 'Continue'
 
@@ -60,8 +62,12 @@ def main():
                 # Check if the game has been won
                 if win_check == 'Win':
                     # If won, end the game
-                    print(f'Player {player} has won the Pig!')
+                    print(f'Player {player} has won!')
                     break
+                elif win_check == 'Break':
+                    print("Break! You broke the pig's back! Restart from zero and pass your turn")
+                    player_book[f'Player #{player}'] = 0
+                    continue
                 elif win_check == 'Continue':
                     # If not won, prints how many points are needed to win.
                     print(f'Player needs {target_score-player_book[f'Player #{player}']} point(s) to win!')
